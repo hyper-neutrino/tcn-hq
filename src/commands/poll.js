@@ -6,7 +6,7 @@ import {
     ComponentType,
 } from "discord.js";
 import db from "../db.js";
-import { get_api_guilds } from "../lib/api.js";
+import { get_api_guilds, is_observer } from "../lib/api.js";
 import { display } from "../lib/polls.js";
 import { defer } from "../utils.js";
 
@@ -199,6 +199,8 @@ export const command = {
 };
 
 export async function execute(cmd) {
+    if (!(await is_observer(cmd.user))) return;
+
     const subgroup = cmd.options.getSubcommandGroup();
     const sub = cmd.options.getSubcommand();
 
