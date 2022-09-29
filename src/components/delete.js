@@ -3,7 +3,9 @@ import db from "../db.js";
 
 export default async function (button, id) {
     await button.deferUpdate();
+
     await db("polls").findOneAndDelete({ id });
+    await db("votes").deleteMany({ poll: id });
 
     await button.editReply({
         embeds: [

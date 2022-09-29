@@ -1,6 +1,7 @@
 import { ButtonStyle, Colors, ComponentType } from "discord.js";
 import { bar, characters, _bar } from "../data.js";
-import { api, timestamp } from "../utils.js";
+import { timestamp } from "../utils.js";
+import { get_api_guilds, get_api_user } from "./api.js";
 
 export default async function (user) {
     let member;
@@ -13,10 +14,10 @@ export default async function (user) {
         let api_user;
 
         try {
-            api_user = await api(`/users/${user.id}`);
+            api_user = await get_api_user(user.id);
         } catch {}
 
-        const guilds = await api("/guilds");
+        const guilds = await get_api_guilds();
 
         let position;
         let representing;

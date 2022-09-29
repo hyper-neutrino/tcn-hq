@@ -1,7 +1,8 @@
 import { ApplicationCommandType } from "discord.js";
 import { bar, space } from "../data.js";
 import db from "../db.js";
-import { api, defer, ephemeral } from "../utils.js";
+import { get_api_guilds, get_api_users } from "../lib/api.js";
+import { defer, ephemeral } from "../utils.js";
 
 export const command = {
     type: ApplicationCommandType.ChatInput,
@@ -14,8 +15,8 @@ export const command = {
 export async function execute(cmd) {
     await defer(cmd);
 
-    const users = await api("/users");
-    const guilds = await api("/guilds");
+    const users = await get_api_users();
+    const guilds = await get_api_guilds();
 
     const ownerless = guilds.filter((guild) => !guild.owner);
     const voterless = guilds.filter((guild) => !guild.voter);

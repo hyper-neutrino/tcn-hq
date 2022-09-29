@@ -4,8 +4,9 @@ import {
     Colors,
 } from "discord.js";
 import db from "../db.js";
+import { get_api_guild } from "../lib/api.js";
 import autocomplete_servers from "../lib/autocomplete_servers.js";
-import { api, defer, ephemeral } from "../utils.js";
+import { defer, ephemeral } from "../utils.js";
 
 export const command = {
     type: ApplicationCommandType.ChatInput,
@@ -79,7 +80,7 @@ export async function execute(cmd) {
             let guild;
 
             try {
-                guild = await api(`/guilds/${e.guild}`);
+                guild = await get_api_guild(e.guild);
 
                 return {
                     embeds: [
@@ -114,7 +115,7 @@ export async function execute(cmd) {
         let guild;
 
         try {
-            guild = await api(`/guilds/${cmd.options.getString("server")}`);
+            guild = await get_api_guild(cmd.options.getString("server"));
         } catch {
             return {
                 embeds: [

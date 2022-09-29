@@ -6,8 +6,9 @@ import {
     ComponentType,
 } from "discord.js";
 import db from "../db.js";
+import { get_api_guilds } from "../lib/api.js";
 import { display } from "../lib/polls.js";
-import { api, defer } from "../utils.js";
+import { defer } from "../utils.js";
 
 const id_auto = {
     type: ApplicationCommandOptionType.String,
@@ -69,7 +70,7 @@ const base_options = [
 ];
 
 const options = {
-    proposal: base_options,
+    proposal: [...base_options],
     selection: [
         ...base_options,
         {
@@ -78,7 +79,7 @@ const options = {
             description:
                 "the minimum number of options that must be chosen (default 1)",
             required: false,
-            min_value: 1,
+            min_value: 0,
         },
         {
             type: ApplicationCommandOptionType.Integer,
@@ -343,14 +344,28 @@ export async function execute(cmd) {
             };
         }
 
+        const options = new Array(24)
+            .fill(0)
+            .map((_, x) => cmd.options.getString(`option-${x + 1}`))
+            .filter((x) => x);
+
+        if (new Set(options).size != options.length) {
+            return {
+                embeds: [
+                    {
+                        title: "Error",
+                        description: "Selection poll options must be unique.",
+                        color: Colors.Red,
+                    },
+                ],
+            };
+        }
+
         await db("polls").findOneAndUpdate(
             { id },
             {
                 $set: {
-                    options: new Array(24)
-                        .fill(0)
-                        .map((_, x) => cmd.options.getString(`option-${x + 1}`))
-                        .filter((x) => x),
+                    options,
                 },
             }
         );
@@ -382,7 +397,7 @@ export async function execute(cmd) {
         }
 
         const eligible = new Set(
-            (await api("/guilds"))
+            (await get_api_guilds())
                 .map((guild) => [guild.owner, guild.advisor])
                 .flat()
                 .filter((x) => x)
@@ -406,6 +421,18 @@ export async function execute(cmd) {
             };
         }
 
+        if (new Set(candidates).size != candidates.length) {
+            return {
+                embeds: [
+                    {
+                        title: "Error",
+                        description: "Election candidates must be unique.",
+                        color: Colors.Red,
+                    },
+                ],
+            };
+        }
+
         await db("polls").findOneAndUpdate({ id }, { $set: { candidates } });
 
         return {
@@ -419,6 +446,7 @@ export async function execute(cmd) {
         };
     } else if (sub == "delete") {
         const id = cmd.options.getString("id");
+
         const poll = await db("polls").findOne({ id });
 
         if (!poll) {
@@ -465,6 +493,9 @@ export async function execute(cmd) {
         await defer(cmd);
 
         const id = cmd.options.getString("id");
+        const duration = cmd.options.getInteger("duration");
+        const dm = cmd.options.getInteger("dm");
+
         const poll = await db("polls").findOne({ id });
 
         if (!poll) {
@@ -477,6 +508,36 @@ export async function execute(cmd) {
                     },
                 ],
             };
+        }
+
+        if (poll.type == "selection") {
+            if (!poll.options?.length) {
+                return {
+                    embeds: [
+                        {
+                            title: "Error",
+                            description:
+                                "Please set the poll's options first (`/poll set-options`).",
+                            color: Colors.Red,
+                        },
+                    ],
+                };
+            }
+        }
+
+        if (poll.type == "election") {
+            if (!poll.candidates?.length) {
+                return {
+                    embeds: [
+                        {
+                            title: "Error",
+                            description:
+                                "Please set the poll's candidates first (`/poll set-candidates`).",
+                            color: Colors.Red,
+                        },
+                    ],
+                };
+            }
         }
 
         const entry = await db("settings").findOne({ key: "vote-channel" });
@@ -508,15 +569,39 @@ export async function execute(cmd) {
             };
         }
 
-        const { url } = await channel.send(await display(poll));
+        poll.open = true;
+        poll.valid = false;
+
+        const target = await channel.send(await display(poll));
+
+        const $set = {
+            message: target.id,
+            channel: target.channel.id,
+            url: target.url,
+            open: true,
+            closed: undefined,
+            valid: false,
+            voted: undefined,
+            missing: undefined,
+        };
+
+        $set.close = new Date();
+        $set.close.setHours($set.close.getHours() + duration);
+
+        if (dm) {
+            $set.dm = new Date();
+            $set.dm.setHours($set.dm.getHours() + duration - dm);
+        }
+
+        await db("polls").findOneAndUpdate({ id }, { $set });
 
         return {
             embeds: [
                 {
                     title: "Posted",
-                    description: `Poll posted [here](${url})`,
+                    description: `Poll posted [here](${target.url})`,
                     color: Colors.Green,
-                    url,
+                    url: target.url,
                 },
             ],
         };

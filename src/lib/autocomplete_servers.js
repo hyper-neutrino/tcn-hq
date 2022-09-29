@@ -1,11 +1,12 @@
-import { api, guild_cache } from "../utils.js";
+import { guild_cache } from "../utils.js";
+import { get_api_guilds } from "./api.js";
 
 export default async function (cmd) {
     const focused = cmd.options.getFocused(true);
 
     let cache;
     if (focused.value || !(cache = guild_cache())) {
-        cache = guild_cache(await api("/guilds"));
+        cache = guild_cache(await get_api_guilds());
     }
 
     const query = focused.value.toLowerCase();

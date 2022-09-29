@@ -1,13 +1,14 @@
 import { ButtonStyle, Colors, ComponentType, SnowflakeUtil } from "discord.js";
 import client from "../client.js";
 import { bar, characters } from "../data.js";
-import { api, timestamp } from "../utils.js";
+import { timestamp } from "../utils.js";
+import { get_api_guild } from "./api.js";
 
 export default async function (id) {
     let guild;
 
     try {
-        guild = await api(`/guilds/${id}`);
+        guild = await get_api_guild(id);
     } catch {
         return {
             embeds: [

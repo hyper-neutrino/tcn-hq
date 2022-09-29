@@ -1,13 +1,11 @@
 import { Colors, ComponentType } from "discord.js";
 import client from "../client.js";
 import { bar, characters } from "../data.js";
-import { api } from "../utils.js";
+import { get_api_guilds, get_observers } from "./api.js";
 
 export default async function () {
     try {
-        const observers = (await api("/users")).filter((user) =>
-            user.roles.includes("observer")
-        );
+        const observers = await get_observers();
 
         const users = new Map();
 
@@ -19,7 +17,7 @@ export default async function () {
 
         const positions = new Map();
 
-        for (const guild of await api("/guilds")) {
+        for (const guild of await get_api_guilds()) {
             for (const key of ["owner", "advisor"]) {
                 if (positions.has(guild[key])) {
                     positions.set(

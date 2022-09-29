@@ -1,17 +1,8 @@
-import {
-    ActivityType,
-    Client,
-    Colors,
-    ComponentType,
-    IntentsBitField,
-    InteractionType,
-} from "discord.js";
+import { Colors, InteractionType } from "discord.js";
 import fs from "fs";
 import client from "./client.js";
 import config from "./config.js";
-import guild_info from "./lib/guild_info.js";
-import observers_info from "./lib/observers_info.js";
-import user_info from "./lib/user_info.js";
+import "./scheduler.js";
 import { is_string, respond } from "./utils.js";
 
 process.on("uncaughtException", (error) => console.error(error));
@@ -76,7 +67,10 @@ client.on("interactionCreate", async (interaction) => {
                 );
             }
         }
-    } else if (interaction.type == InteractionType.MessageComponent) {
+    } else if (
+        interaction.type == InteractionType.MessageComponent ||
+        interaction.type == InteractionType.ModalSubmit
+    ) {
         if (interaction.customId.startsWith(":")) {
             let cmd = interaction.customId.substring(1);
             const [id, key, ...args] = cmd.split(/:/);
