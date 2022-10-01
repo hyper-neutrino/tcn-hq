@@ -23,9 +23,9 @@ export default async function (poll) {
         }
 
         try {
-            // await user.send(
-            //     `You have not yet voted on \`${poll.id}\`: __${poll.title}__. Please vote as soon as possible: <${poll.url}>. Thank you.`
-            // );
+            await user.send(
+                `You have not yet voted on \`${poll.id}\`: __${poll.title}__. Please vote as soon as possible: <${poll.url}>. Thank you.`
+            );
 
             await client.log({
                 content: `[DM] ${user.tag} (\`${user.id}\`): \`${poll.id}\``,
