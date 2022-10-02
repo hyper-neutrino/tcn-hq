@@ -19,11 +19,11 @@ const LIYUE = "<:liyue:1026030857812705391>";
 const INAZUMA = "<:inazuma:1026030856420204584>";
 const SUMERU = "<:sumeru:1026030854788616302>";
 const SNEZHNAYA = "<:other_region:1026031780039499826>";
-const OTHER = "<:other_region:1026031780039499826>";
+const OTHER_REGION = "<:other_region:1026031780039499826>";
 
 export const characters = {
     albedo: [GEO, SWORD, MONDSTADT],
-    aloy: [CRYO, BOW, OTHER],
+    aloy: [CRYO, BOW, OTHER_REGION],
     amber: [PYRO, BOW, MONDSTADT],
     itto: [GEO, CLAYMORE, INAZUMA],
     barbara: [HYDRO, CATALYST, MONDSTADT],
@@ -66,7 +66,7 @@ export const characters = {
     tartaglia: [HYDRO, BOW, SNEZHNAYA],
     thoma: [PYRO, POLEARM, INAZUMA],
     tighnari: [DENDRO, BOW, SUMERU],
-    traveler: [OTHER, SWORD, OTHER],
+    traveler: [OTHER, SWORD, OTHER_REGION],
     venti: [ANEMO, BOW, MONDSTADT],
     xiangling: [PYRO, POLEARM, LIYUE],
     xiao: [ANEMO, POLEARM, LIYUE],
@@ -78,7 +78,7 @@ export const characters = {
     yoimiya: [PYRO, BOW, INAZUMA],
     yunjin: [GEO, POLEARM, LIYUE],
     zhongli: [GEO, POLEARM, LIYUE],
-    dainsleif: [OTHER, UNKNOWN, OTHER],
+    dainsleif: [OTHER, UNKNOWN, OTHER_REGION],
 };
 
 export const _bar = "https://i.imgur.com/3yKSBha.png";
