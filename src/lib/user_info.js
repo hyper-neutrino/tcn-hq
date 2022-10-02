@@ -41,7 +41,7 @@ export default async function (user) {
                             }[key]
                         } of ${guild.name} (${characters[guild.character].join(
                             " "
-                        )} ${guild.character}: \`${guild.id}\`)`;
+                        )} Mains: \`${guild.id}\`)`;
 
                         representing = guild;
                     }
@@ -60,7 +60,6 @@ export default async function (user) {
             embeds: [
                 {
                     title: `User info for ${user.tag}`,
-                    description: banner ? "" : "_ _\n_ _\n",
                     fields: [
                         {
                             name: "Created",
@@ -106,7 +105,6 @@ export default async function (user) {
                     ? [
                           {
                               title: `Member info for ${member.displayName}`,
-                              description: "_ _\n_ _\n",
                               fields: [
                                   {
                                       name: "Joined",

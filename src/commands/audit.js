@@ -1,5 +1,5 @@
 import { ApplicationCommandType } from "discord.js";
-import { bar, space } from "../data.js";
+import { bar, characters, space } from "../data.js";
 import db from "../db.js";
 import { get_api_guilds, get_api_users } from "../lib/api.js";
 import { defer, ephemeral } from "../utils.js";
@@ -96,7 +96,9 @@ export async function execute(cmd) {
     for (const guild of guilds) {
         if (!guild.invite) {
             wrong_invites.push(
-                `The invite for ${guild.name} (${guild.character}: \`${guild.id}\`) is missing.`
+                `The invite for ${guild.name} (${
+                    characters[guild.character][3]
+                }: \`${guild.id}\`) is missing.`
             );
         } else {
             let invite;
@@ -105,7 +107,9 @@ export async function execute(cmd) {
                 invite = await cmd.client.fetchInvite(guild.invite);
             } catch {
                 wrong_invites.push(
-                    `The invite for ${guild.name} (${guild.character}: \`${guild.id}\`) is invalid (\`${guild.invite}\`).`
+                    `The invite for ${guild.name} (${
+                        characters[guild.character][3]
+                    }: \`${guild.id}\`) is invalid (\`${guild.invite}\`).`
                 );
 
                 continue;
@@ -113,7 +117,11 @@ export async function execute(cmd) {
 
             if (invite.guild.id != guild.id) {
                 wrong_invites.push(
-                    `The invite for ${guild.name} (${guild.character}: \`${guild.id}\`) points to the wrong server (\`${guild.invite}\` => \`${invite.id}\`).`
+                    `The invite for ${guild.name} (${
+                        characters[guild.character][3]
+                    }: \`${guild.id}\`) points to the wrong server (\`${
+                        guild.invite
+                    }\` => \`${invite.id}\`).`
                 );
             }
         }
@@ -176,7 +184,7 @@ export async function execute(cmd) {
         embeds: [
             {
                 title: "Audit: Stats",
-                description: `_ _\nUsers: ${users.length}\nGuilds: ${
+                description: `Users: ${users.length}\nGuilds: ${
                     guilds.length
                 }\nGuilds with no advisor: ${
                     guilds.filter((guild) => !guild.advisor).length
@@ -184,7 +192,7 @@ export async function execute(cmd) {
             },
             {
                 title: "Audit: API Data",
-                description: `_ _\nChecking for...\n- Guilds with no owner: ${
+                description: `Checking for...\n- Guilds with no owner: ${
                     ownerless.length > 0
                         ? `:x: ${ownerless
                               .map((guild) => guild.name)
@@ -244,7 +252,7 @@ export async function execute(cmd) {
             },
             {
                 title: "Audit: HQ Sync",
-                description: `_ _\nChecking for...\n- Unauthorized members: ${
+                description: `Checking for...\n- Unauthorized members: ${
                     unauthorized.length > 0
                         ? `:x: ${unauthorized.map(
                               (member) =>

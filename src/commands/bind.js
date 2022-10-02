@@ -3,6 +3,7 @@ import {
     ApplicationCommandType,
     Colors,
 } from "discord.js";
+import { characters } from "../data.js";
 import db from "../db.js";
 import { get_api_guild } from "../lib/api.js";
 import autocomplete_servers from "../lib/autocomplete_servers.js";
@@ -86,7 +87,11 @@ export async function execute(cmd) {
                     embeds: [
                         {
                             title: "ERROR",
-                            description: `That role is already bound to ${guild.name} (${guild.character}: \`${guild.id}\`)`,
+                            description: `That role is already bound to ${
+                                guild.name
+                            } (${characters[guild.character][3]}: \`${
+                                guild.id
+                            }\`)`,
                             color: Colors.Red,
                         },
                     ],
@@ -131,7 +136,9 @@ export async function execute(cmd) {
         db_name = "guild_bind";
         selector = { guild: guild.id };
 
-        message = `server role for ${guild.name} (${guild.character}: \`${guild.id}\`)`;
+        message = `server role for ${guild.name} (${
+            characters[guild.character][3]
+        }: \`${guild.id}\`)`;
     } else if (sub == "position") {
         const position = cmd.options.getString("position");
 

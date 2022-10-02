@@ -21,7 +21,13 @@ for (const name of fs.readdirSync("src/commands")) {
 
 client.once("ready", async () => {
     await client.application.commands.set(commands);
-    client.hq = await client.guilds.fetch("804174916907171870");
+    try {
+        client.hq = await client.guilds.fetch("804174916907171870");
+    } catch {
+        console.error(
+            "\n\n=== [ CRITICAL ] ===\n\nCould not fetch HQ. Maybe the bot isn't in the server? Most features will not work properly.\n\n=== [ -------- ] ===\n"
+        );
+    }
 
     console.log("HQ Systems are ready.");
 });

@@ -34,7 +34,7 @@ export default async function () {
                             }[key]
                         } of ${guild.name} (${characters[guild.character].join(
                             " "
-                        )} ${guild.character}: \`${guild.id}\`)`
+                        )} Mains: \`${guild.id}\`)`
                     );
                 }
             }
@@ -48,7 +48,7 @@ export default async function () {
                     fields: await Promise.all(
                         observers.map((api_user) =>
                             ((user) => ({
-                                name: `_ _\n${
+                                name: `${
                                     user
                                         ? `Info for **${user.tag}**`
                                         : "**Missing User**"

@@ -52,7 +52,6 @@ export default async function (id) {
             embeds: [
                 {
                     title: `Server Info for ${guild.name}`,
-                    description: "_ _\n_ _\n",
                     fields: [
                         {
                             name: "Created",
@@ -63,10 +62,9 @@ export default async function (id) {
                         },
                         {
                             name: "Character",
-                            value: `${
+                            value:
                                 characters[guild.character]?.join(" ") ??
-                                "[missing data]"
-                            } ${guild.character ?? "[missing character]"}`,
+                                "[missing data]",
                         },
                         {
                             name: "Owner",
