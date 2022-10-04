@@ -220,13 +220,17 @@ export async function display(poll) {
                             .map((x) => `- ${x}`)
                             .join("\n"),
                     },
-                    {
-                        name: "**Deadline**",
-                        value: `${timestamp(poll.close)} (${timestamp(
-                            poll.close,
-                            "R"
-                        )})`,
-                    },
+                    ...(poll.close
+                        ? [
+                              {
+                                  name: "**Deadline**",
+                                  value: `${timestamp(poll.close)} (${timestamp(
+                                      poll.close,
+                                      "R"
+                                  )})`,
+                              },
+                          ]
+                        : []),
                 ],
             },
         ],
