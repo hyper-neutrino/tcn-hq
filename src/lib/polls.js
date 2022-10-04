@@ -1,8 +1,7 @@
 import { ButtonStyle, Colors, ComponentType } from "discord.js";
 import client from "../client.js";
 import db from "../db.js";
-import { get_eligible, is_string } from "../utils.js";
-import { get_council_members, get_voters } from "./api.js";
+import { get_eligible, is_string, timestamp } from "../utils.js";
 
 export async function display(poll) {
     if (is_string(poll)) poll = await db("polls").findOne({ id: poll });
@@ -220,6 +219,13 @@ export async function display(poll) {
                             .filter((x) => x)
                             .map((x) => `- ${x}`)
                             .join("\n"),
+                    },
+                    {
+                        name: "**Deadline**",
+                        value: `${timestamp(poll.close)} (${timestamp(
+                            poll.close,
+                            "R"
+                        )})`,
                     },
                 ],
             },
