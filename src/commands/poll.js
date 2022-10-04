@@ -574,12 +574,7 @@ export async function execute(cmd) {
         poll.open = true;
         poll.valid = false;
 
-        const target = await channel.send(await display(poll));
-
         const $set = {
-            message: target.id,
-            channel: target.channel.id,
-            url: target.url,
             open: true,
             closed: undefined,
             valid: false,
@@ -590,6 +585,12 @@ export async function execute(cmd) {
         $set.close = new Date();
         $set.close.setHours($set.close.getHours() + duration);
         poll.close = $set.close;
+
+        const target = await channel.send(await display(poll));
+
+        $set.message = target.id;
+        $set.channel = target.channel.id;
+        $set.url = target.url;
 
         if (dm) {
             $set.dm = new Date();
