@@ -4,7 +4,7 @@ import db from "../db.js";
 import { get_eligible, is_string, timestamp } from "../utils.js";
 
 export async function display(poll) {
-    poll = await db("polls").findOne({ id: poll?.id ?? poll });
+    if (is_string(poll)) poll = await db("polls").findOne({ id: poll });
 
     if (!poll) {
         return {

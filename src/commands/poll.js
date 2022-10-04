@@ -589,6 +589,7 @@ export async function execute(cmd) {
 
         $set.close = new Date();
         $set.close.setHours($set.close.getHours() + duration);
+        poll.close = $set.close;
 
         if (dm) {
             $set.dm = new Date();
