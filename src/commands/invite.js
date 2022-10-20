@@ -16,7 +16,7 @@ export async function execute(cmd) {
     const invite = await cmd.guild.invites.create("809970922701979678", {
         maxUses: 1,
         unique: true,
-        maxAge: 0,
+        maxAge: 604800,
     });
   
     await cmd.editReply(invite.url);
