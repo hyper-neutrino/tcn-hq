@@ -3,7 +3,7 @@ import db from "../db.js";
 
 export const command = {
     type: ApplicationCommandType.ChatInput,
-    name: "bind",
+    name: "invite",
     description: "obtain a one-time invite",
     dm_permission: false,
     default_member_permissions: "0",
