@@ -23,6 +23,7 @@ const OTHER_REGION = "<:other_region:1026031780039499826>";
 
 export const characters = {
     albedo: [GEO, SWORD, MONDSTADT, "Albedo"],
+    alhaitham: [DENDRO, UNKNOWN, SUMERU, "Alhaitham"],
     aloy: [CRYO, BOW, OTHER_REGION, "Aloy"],
     amber: [PYRO, BOW, MONDSTADT, "Amber"],
     itto: [GEO, CLAYMORE, INAZUMA, "Arataki Itto"],
@@ -86,6 +87,7 @@ export const characters = {
 
 export const character_images = {
     albedo: "https://static.wikia.nocookie.net/gensin-impact/images/0/00/Character_Albedo_Thumb.png",
+    alhaitham: "https://i.imgur.com/k9YrEOj.png",
     aloy: "https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Character_Aloy_Thumb.png",
     amber: "https://static.wikia.nocookie.net/gensin-impact/images/c/c6/Character_Amber_Thumb.png",
     itto: "https://static.wikia.nocookie.net/gensin-impact/images/7/79/Character_Arataki_Itto_Thumb.png",
