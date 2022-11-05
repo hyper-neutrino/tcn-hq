@@ -34,8 +34,6 @@ export async function execute(cmd) {
         for (const guild of block) {
             let owner, advisor;
 
-            console.log(guild, owner, advisor);
-
             if (guild.owner) {
                 try {
                     owner = await cmd.client.users.fetch(guild.owner);
