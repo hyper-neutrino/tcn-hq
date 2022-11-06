@@ -41,7 +41,7 @@ export async function execute(cmd) {
         }
 
         for (const id of waiting) {
-            users.get(id).push(" ");
+            users.get(id).push("➖");
         }
     }
 
