@@ -23,7 +23,7 @@ const OTHER_REGION = "<:other_region:1026031780039499826>";
 
 export const characters = {
     albedo: [GEO, SWORD, MONDSTADT, "Albedo"],
-    alhaitham: [DENDRO, UNKNOWN, SUMERU, "Alhaitham"],
+    alhaitham: [DENDRO, SWORD, SUMERU, "Alhaitham"],
     aloy: [CRYO, BOW, OTHER_REGION, "Aloy"],
     amber: [PYRO, BOW, MONDSTADT, "Amber"],
     itto: [GEO, CLAYMORE, INAZUMA, "Arataki Itto"],
