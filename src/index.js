@@ -97,6 +97,8 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 client.on("messageCreate", async (message) => {
+    console.log(message.webhookId);
+
     if (message.webhookId == "995765858594988132") {
         await message.client.channels
             .resolve("870881402671992852")
