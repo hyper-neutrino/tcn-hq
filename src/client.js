@@ -17,7 +17,11 @@ Client.prototype.log = async function (message) {
 };
 
 export default new Client({
-    intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers],
+    intents: [
+        IntentsBitField.Flags.Guilds,
+        IntentsBitField.Flags.GuildMembers,
+        IntentsBitField.Flags.GuildMessages,
+    ],
     presence: {
         status: "online",
         activities: [{ type: ActivityType.Watching, name: "your votes" }],

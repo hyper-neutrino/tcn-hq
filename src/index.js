@@ -96,4 +96,14 @@ client.on("interactionCreate", async (interaction) => {
     }
 });
 
+client.on("messageCreate", async (message) => {
+    if (message.webhookId == "995765858594988132") {
+        await message.client.channels
+            .resolve("870881402671992852")
+            .send(
+                "<@&1041951120412655636> A new banshare was just posted in <#804178568317632553> for review."
+            );
+    }
+});
+
 await client.login(config.discord_token);
