@@ -21,6 +21,7 @@ export default new Client({
         IntentsBitField.Flags.Guilds,
         IntentsBitField.Flags.GuildMembers,
         IntentsBitField.Flags.GuildMessages,
+        IntentsBitField.Flags.MessageContent,
     ],
     presence: {
         status: "online",
