@@ -288,7 +288,7 @@ export async function execute(cmd) {
                         : ":ok:"
                 }\n- Missing bindings: ${
                     expected_bindings.size > 0
-                        ? `${[...expected.entries()]
+                        ? `${[...expected_bindings.values()]
                               .map((guild) => guild.name)
                               .sort()
                               .join(", ")}`
