@@ -68,6 +68,11 @@ export async function execute(cmd) {
             .map((user) => cmd.client.users.fetch(user))
     );
 
+    const expected_bindings = new Map();
+    for (const guild of guilds) {
+        expected_bindings.set(guild.id, guild);
+    }
+
     const a2d_servers = new Map();
     const a2d_positions = new Map();
 
@@ -76,6 +81,7 @@ export async function execute(cmd) {
     for (const entry of await db("guild_bind").find({}).toArray()) {
         bound.add(entry.role);
         a2d_servers.set(entry.guild, entry.role);
+        expected_bindings.delete(entry.guild);
     }
 
     for (const entry of await db("position_bind").find({}).toArray()) {
@@ -279,6 +285,13 @@ export async function execute(cmd) {
                                       } \`${member.id}\`): ${errors.join(", ")}`
                               )
                               .join("\n")}`
+                        : ":ok:"
+                }\n- Missing bindings: ${
+                    expected_bindings.size > 0
+                        ? `${[...expected.entries()]
+                              .map((guild) => guild.name)
+                              .sort()
+                              .join(", ")}`
                         : ":ok:"
                 }`,
             },
