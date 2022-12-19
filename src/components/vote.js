@@ -176,12 +176,12 @@ export default async function (interaction, id, key) {
 
             const value = parseInt(rank);
 
-            if (isNaN(value)) {
+            if (isNaN(value) || value < -1) {
                 return await interaction.editReply({
                     embeds: [
                         {
                             title: "Unrecognized Rank Format",
-                            description: `The following rank was not recognized (was expecting a number):\n\n\`\`\`\n${rank}\n\`\`\``,
+                            description: `The following rank was not recognized (was expecting a ranking from 1 to ${poll.candidates.length}, or 0 / -1):\n\n\`\`\`\n${rank}\n\`\`\``,
                             color: Colors.Red,
                         },
                     ],
@@ -212,7 +212,7 @@ export default async function (interaction, id, key) {
                 });
             }
 
-            if (ranked.has(value)) {
+            if (value > 0 && ranked.has(value)) {
                 return await interaction.editReply({
                     embeds: [
                         {
