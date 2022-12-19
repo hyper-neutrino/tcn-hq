@@ -139,7 +139,7 @@ export async function display(poll) {
                 )
                 .slice(0, poll.seats)
                 .map((x) => users[x])
-                .sort((x, y) => x.name.localeCompare(y.name))
+                .sort((x, y) => x.username.localeCompare(y.username))
                 .map((x) => `<@${x.id}> (${x.id})`);
 
             fields.push({
