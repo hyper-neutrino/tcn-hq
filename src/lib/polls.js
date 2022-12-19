@@ -128,42 +128,29 @@ export async function display(poll) {
         }
 
         if (poll.live || poll.valid) {
+            const top = poll.candidates
+                .filter(
+                    (x) => results.candidates[x].no < results.candidates[x].yes
+                )
+                .sort(
+                    (a, b) =>
+                        results.candidates[b].points -
+                        results.candidates[a].points
+                )
+                .slice(0, poll.seats)
+                .map((x) => users[x])
+                .sort((x, y) => x.name.localeCompare(y.name))
+                .map((x) => `<@${x.id}> (${x.id})`);
+
             fields.push({
                 name: "**Results**",
-                value: poll.candidates
-                    .sort((a, b) =>
-                        ((x, y) =>
-                            (x.no >= x.yes
-                                ? y.no >= y.yes
-                                    ? 0
-                                    : 1
-                                : y.no >= y.yes
-                                ? -1
-                                : 0) || y.points - x.points)(
-                            results.candidates[a],
-                            results.candidates[b]
-                        )
-                    )
-                    .map(
-                        (id) =>
-                            `${users[id]} (${users[id].tag}): ${((x) =>
-                                `${
-                                    x.yes + x.no
-                                        ? `\`${x.points} pt${
-                                              x.points == 1 ? "" : "s"
-                                          }\` - \`${x.yes}-${x.no}\` (${
-                                              Math.round(
-                                                  (x.yes /
-                                                      (x.yes + x.no || 1)) *
-                                                      10000
-                                              ) / 100
-                                          }%) approval`
-                                        : "no votes"
-                                } - abstain: ${x.abstain}`)(
-                                results.candidates[id]
-                            )}`
-                    )
-                    .join("\n"),
+                value: `The top ${poll.seats} candidate${
+                    poll.seats == 1 ? " is " : "s (in alphabetical order) are "
+                } ${top.join(", ")}${
+                    top.length < poll.seats
+                        ? " (there are not enough candidates with a >50% approval rating)"
+                        : ""
+                }.`,
             });
         }
     }
