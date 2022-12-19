@@ -88,7 +88,7 @@ export default async function (interaction, id, key) {
                                                     )
                                                 ).tag
                                             }: ${
-                                                vote?.ranking[candidate] ?? ""
+                                                vote?.ranking?.[candidate] ?? ""
                                             }`
                                     )
                                 )
