@@ -39,6 +39,7 @@ export const characters = {
     diona: [CRYO, BOW, MONDSTADT, "Diona"],
     dori: [ELECTRO, CLAYMORE, SUMERU, "Dori"],
     eula: [CRYO, CLAYMORE, MONDSTADT, "Eula"],
+    faruzan: [ANEMO, BOW, SUMERU, "Faruzan"],
     fischl: [ELECTRO, BOW, MONDSTADT, "Fischl"],
     ganyu: [CRYO, BOW, LIYUE, "Ganyu"],
     gorou: [GEO, BOW, INAZUMA, "Gorou"],
@@ -108,6 +109,8 @@ export const character_images = {
     diona: "https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Character_Diona_Thumb.png",
     dori: "https://static.wikia.nocookie.net/gensin-impact/images/9/90/Character_Dori_Thumb.png",
     eula: "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Character_Eula_Thumb.png",
+    faruzan:
+        "https://static.wikia.nocookie.net/gensin-impact/images/a/a1/Character_Faruzan_Thumb.png",
     fischl: "https://static.wikia.nocookie.net/gensin-impact/images/1/14/Character_Fischl_Thumb.png",
     ganyu: "https://static.wikia.nocookie.net/gensin-impact/images/0/0a/Character_Ganyu_Thumb.png",
     gorou: "https://static.wikia.nocookie.net/gensin-impact/images/5/56/Character_Gorou_Thumb.png",
