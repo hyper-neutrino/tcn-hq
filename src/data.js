@@ -79,6 +79,7 @@ export const characters = {
     xingqiu: [HYDRO, SWORD, LIYUE, "Xingqiu"],
     xinyan: [PYRO, CLAYMORE, LIYUE, "Xinyan"],
     yae: [ELECTRO, CATALYST, INAZUMA, "Yae Miko"],
+    yaoyao: [DENDRO, POLEARM, LIYUE, "Yaoyao"],
     yanfei: [PYRO, CATALYST, LIYUE, "Yanfei"],
     yelan: [HYDRO, BOW, LIYUE, "Yelan"],
     yoimiya: [PYRO, BOW, INAZUMA, "Yoimiya"],
@@ -161,6 +162,7 @@ export const character_images = {
         "https://static.wikia.nocookie.net/gensin-impact/images/4/4a/Character_Xingqiu_Thumb.png",
     xinyan: "https://static.wikia.nocookie.net/gensin-impact/images/9/9d/Character_Xinyan_Thumb.png",
     yae: "https://static.wikia.nocookie.net/gensin-impact/images/5/57/Character_Yae_Miko_Thumb.png",
+    yaoyao: "https://static.wikia.nocookie.net/gensin-impact/images/8/83/Yaoyao_Icon.png",
     yanfei: "https://static.wikia.nocookie.net/gensin-impact/images/1/1f/Character_Yanfei_Thumb.png",
     yelan: "https://static.wikia.nocookie.net/gensin-impact/images/a/a8/Character_Yelan_Thumb.png",
     yoimiya:
