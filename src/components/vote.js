@@ -167,7 +167,7 @@ export default async function (interaction, id, key) {
                     embeds: [
                         {
                             title: "Missing Rank",
-                            description: `You did not rank ${tag}. If you wish to vote against them (\`0\`) or abstain (\`-1\`), please do so manually.`,
+                            description: `You did not rank ${tag}. If you wish to vote against them (\`-1\`) or abstain (\`0\`), please do so manually.`,
                             color: Colors.Red,
                         },
                     ],

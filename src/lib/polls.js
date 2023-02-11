@@ -118,7 +118,7 @@ export async function display(poll) {
 
         fields.push({
             name: "**Election System Info**",
-            value: `When you click \`vote\`: next to each candidate's name, enter their rank (from 1 - ${poll.candidates.length}), 0 to vote against them, and -1 to abstain from voting for them specifically. You may also abstain from all candidates at once with the abstain button (there is no difference between doing this and entering -1 for everyone).`,
+            value: `When you click \`vote\`: next to each candidate's name, enter their rank (from 1 - ${poll.candidates.length}), -1 to vote against them, and 0 to abstain from voting for them specifically. You may also abstain from all candidates at once with the abstain button (there is no difference between doing this and entering 0 for everyone).`,
         });
 
         const users = {};
@@ -314,7 +314,7 @@ export async function tally(poll) {
                         if (value > 0) {
                             slot.yes++;
                             slot.points += poll.candidates.length + 1 - value;
-                        } else if (value == 0) slot.no++;
+                        } else if (value == -1) slot.no++;
                         else slot.abstain++;
                     }
                 }
