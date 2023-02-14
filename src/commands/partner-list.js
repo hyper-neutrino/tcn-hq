@@ -1,5 +1,5 @@
 import { ApplicationCommandType } from "discord.js";
-import { characters, character_images } from "../data.js";
+import { characters, get_image } from "../data.js";
 import { get_api_guilds } from "../lib/api.js";
 
 export const command = {
@@ -60,7 +60,7 @@ export async function execute(cmd) {
                         : ""
                 }`,
                 image: { url: "https://i.imgur.com/U9Wqlug.png" },
-                thumbnail: { url: character_images[guild.character] },
+                thumbnail: { url: get_image(guild.character) },
                 footer: { text: guild.id },
                 url: `https://discord.com/invite/${guild.invite}`,
                 color: 0x2d3136,
