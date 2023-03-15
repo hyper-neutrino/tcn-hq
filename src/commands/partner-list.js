@@ -7,6 +7,7 @@ export const command = {
     name: "partner-list",
     description:
         "generate the long-form full partner list in the current channel",
+    default_member_permissions: "0",
 };
 
 export async function execute(cmd) {

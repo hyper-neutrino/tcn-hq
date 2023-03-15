@@ -14,8 +14,6 @@ const id_auto = {
     type: ApplicationCommandOptionType.String,
     name: "id",
     description: "poll ID",
-    dm_permission: false,
-    default_member_permissions: "0",
     required: true,
     autocomplete: true,
 };
@@ -107,6 +105,7 @@ export const command = {
     name: "poll",
     description: "manage polls",
     dm_permission: false,
+    default_member_permissions: "0",
     options: [
         {
             type: ApplicationCommandOptionType.SubcommandGroup,

@@ -10,6 +10,8 @@ export const command = {
     type: ApplicationCommandType.ChatInput,
     name: "close-poll",
     description: "close a poll",
+    dm_permission: false,
+    default_member_permissions: "0",
     options: [
         {
             type: ApplicationCommandOptionType.String,

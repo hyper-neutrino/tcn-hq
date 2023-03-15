@@ -11,6 +11,8 @@ export const command = {
     type: ApplicationCommandType.ChatInput,
     name: "set-setting",
     description: "set a setting",
+    dm_permission: false,
+    default_member_permissions: "0",
     options: [
         {
             type: ApplicationCommandOptionType.Subcommand,

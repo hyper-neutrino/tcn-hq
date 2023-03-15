@@ -9,6 +9,7 @@ export const command = {
     name: "audit",
     description: "run the API and HQ data audit cycle",
     dm_permission: false,
+    default_member_permissions: "0",
     options: [ephemeral],
 };
 
