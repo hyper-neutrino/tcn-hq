@@ -45,9 +45,9 @@ export function display_election_vote(poll, vote) {
         .map(
             (candidate) =>
                 `<@${candidate}>: ${
-                    vote.abstain || vote.ranking[candidate] < 0
+                    vote.abstain || vote.ranking[candidate] == 0
                         ? "[abstain]"
-                        : vote.ranking[candidate] == 0
+                        : vote.ranking[candidate] == -1
                         ? ":x:"
                         : `#${vote.ranking[candidate]}`
                 }`
