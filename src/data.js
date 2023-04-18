@@ -48,6 +48,7 @@ export const characters = {
     jean: [ANEMO, SWORD, MONDSTADT, "Jean"],
     kazuha: [ANEMO, SWORD, INAZUMA, "Kaedehara Kazuha"],
     kaeya: [CRYO, SWORD, MONDSTADT, "Kaeya"],
+    kaveh: [DENDRO, CLAYMORE, SUMERU, "Kaveh"],
     ayaka: [CRYO, SWORD, INAZUMA, "Kamisato Ayaka"],
     ayato: [HYDRO, SWORD, INAZUMA, "Kamisato Ayato"],
     keqing: [ELECTRO, SWORD, LIYUE, "Keqing"],
@@ -105,7 +106,7 @@ export function get_image(name) {
     traveler: mhy`PlayerBoy`,
     yanfei: mhy`Feiyan`,
     alhaitham: mhy`Alhatham`,
-    dehya: 'https://i.imgur.com/gT0hoki.png',
+    kaveh: "https://i.imgur.com/cv97twy.png",
     unknown: "https://static.wikia.nocookie.net/gensin-impact/images/7/74/Character_Unknown_Thumb.png",
   })[name] || mhy(name[0].toUpperCase()+name.slice(1));
 }
