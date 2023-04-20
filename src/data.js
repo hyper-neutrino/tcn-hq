@@ -27,6 +27,7 @@ export const characters = {
     aloy: [CRYO, BOW, OTHER_REGION, "Aloy"],
     amber: [PYRO, BOW, MONDSTADT, "Amber"],
     itto: [GEO, CLAYMORE, INAZUMA, "Arataki Itto"],
+    baizhu: [DENDRO, CATALYST, LIYUE, "Baizhu"],
     barbara: [HYDRO, CATALYST, MONDSTADT, "Barbara"],
     beidou: [ELECTRO, CLAYMORE, LIYUE, "Beidou"],
     bennett: [PYRO, SWORD, MONDSTADT, "Bennett"],
@@ -107,6 +108,7 @@ export function get_image(name) {
     yanfei: mhy`Feiyan`,
     alhaitham: mhy`Alhatham`,
     kaveh: "https://i.imgur.com/cv97twy.png",
+    baizhu: "https://i.imgur.com/37uByIX.png",
     unknown: "https://static.wikia.nocookie.net/gensin-impact/images/7/74/Character_Unknown_Thumb.png",
   })[name] || mhy(name[0].toUpperCase()+name.slice(1));
 }
